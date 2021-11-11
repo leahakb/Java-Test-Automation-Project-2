@@ -5,11 +5,19 @@ import org.testng.annotations.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Main {
-    public static WebDriver driver;
-    @BeforeClass
-        public static void runOnceBeforeClass(){
-            System.setProperty("webdriver.chrome.driver", "C:\\Users\\Yelena\\Downloads\\chromedriver_win32\\chromedriver.exe");
-            driver = new ChromeDriver();
-            driver.get("https://buyme.co.il/");
-        }
+    public static void main(String[] args) {
+        SingletonBrowser browser1 = SingletonBrowser.getInstaceOfSingletonBrowser();
+        WebDriver driver = browser1.getDriver();
+        driver.get("https://buyme.co.il/");
+    }
+    @Test
+    public static void test_1()
+    {
+
+    }
+
+    @AfterClass
+    public static void runAfterClass(){
+        //driver.quit();
+    }
 }
