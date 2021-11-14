@@ -12,8 +12,9 @@ public class Login{
     private WebDriver driver;
     private WebDriverWait wait;
 
-    public Login(WebDriver driver){
-        this.driver = SingletonBrowser.getInstaceOfSingletonBrowser();
+    public void loginDriver(WebDriver driver){
+        //OpenSite driver = OpenSite(driver);
+        this.driver = driver;
         //wait = new WebDriverWait(driver, 10);
     }
 

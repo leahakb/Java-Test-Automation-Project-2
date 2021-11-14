@@ -25,32 +25,18 @@ public class Main {
     @Test
     private void toRegister() {
         //popup to login or register
-        Register register = new Register(driver);
-        register.toRegister();
+
+        Register process = new Register();
+        process.registerDriver(driver);
+        process.Registration();
     }
 
     @Test
     public void toLogin(){
-        Login login = new Login(driver);
+        Login login = new Login();
+        login.loginDriver(driver);
         login.clickEnter();
         login.Enter();
-
-//        notLoggedIn = driver.findElement(By.className("seperator-link")).isDisplayed();
-//        if(!notLoggedIn)
-//            System.out.println("You are already logged in");
-//        else{
-//            //popup to login or register
-//            driver.findElement(By.className("seperator-link")).click();
-//
-//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[gtm='כניסה ל-BUYME']")));
-//            WebElement login = driver.findElement(By.cssSelector("button[type=submit]"));
-//            Actions login_aciton = new Actions(driver);
-//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type=email]")));
-//            driver.findElement(By.cssSelector("input[type=email]")).sendKeys(Constants.email);
-//            driver.findElement(By.cssSelector("input[type=password]")).sendKeys(Constants.pass);
-//
-//            login_aciton.moveToElement(login).click().perform();
-//        }
     }
     @Test
     public void searchGift(){
