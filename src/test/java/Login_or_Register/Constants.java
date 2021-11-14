@@ -1,3 +1,5 @@
+package Login_or_Register;
+
 public class Constants {
     //registration credentials
     public static final String firstName = "test";
