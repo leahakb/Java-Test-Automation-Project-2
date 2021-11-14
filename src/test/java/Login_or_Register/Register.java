@@ -10,9 +10,8 @@ public class Register {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    public void registerDriver(WebDriver driver) {
-        //OpenSite driver = OpenSite(driver);
-        this.driver = driver;
+    public void toRegister() {
+        this.driver = DriverSingleton.getDriverInstance().getDriver();
     }
 
     public void Registration() {

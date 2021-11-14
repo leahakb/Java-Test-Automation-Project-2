@@ -2,6 +2,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.tracing.SpanWrappedRoutable;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -27,14 +28,14 @@ public class Main {
         //popup to login or register
 
         Register process = new Register();
-        process.registerDriver(driver);
+        process.toRegister();
         process.Registration();
     }
 
     @Test
     public void toLogin(){
         Login login = new Login();
-        login.loginDriver(driver);
+        login.toLogin();
         login.clickEnter();
         login.Enter();
     }

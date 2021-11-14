@@ -11,11 +11,8 @@ public class Login{
     private boolean notLoggedIn = true;
     private WebDriver driver;
     private WebDriverWait wait;
-
-    public void loginDriver(WebDriver driver){
-        //OpenSite driver = OpenSite(driver);
-        this.driver = driver;
-        //wait = new WebDriverWait(driver, 10);
+    public toLogin(WebDriver driver) {
+        this.driver = DriverSingleton.getDriverInstance().getDriver();
     }
 
     public void clickEnter(){
@@ -30,10 +27,10 @@ public class Login{
 
     }
     public void Enter(){
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[gtm='כניסה ל-BUYME']")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[gtm='כניסה ל-BUYME']")));
         WebElement login = driver.findElement(By.cssSelector("button[type=submit]"));
         Actions login_aciton = new Actions(driver);
-       //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type=email]")));
+       wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type=email]")));
         driver.findElement(By.cssSelector("input[type=email]")).sendKeys(Constants.email);
         driver.findElement(By.cssSelector("input[type=password]")).sendKeys(Constants.pass);
 
