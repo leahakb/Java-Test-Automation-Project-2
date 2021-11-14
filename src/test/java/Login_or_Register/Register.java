@@ -20,7 +20,7 @@ public class Register {
     }
 
     public void Registration() {
-        if (!alreadyRegistered) {
+        //if (!alreadyRegistered) {
 
             driver.findElement(By.cssSelector("div.register-or-login > span")).click();
 
@@ -36,5 +36,5 @@ public class Register {
 
             }
         }
-    }
+   // }
 }

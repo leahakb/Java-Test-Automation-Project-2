@@ -34,12 +34,12 @@ public class Main {
 
     @Test
     public void toLogin(){
-        Login login = new Login();
-        login.toLogin();
-        login.clickEnter();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type=email]")));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[gtm='כניסה ל-BUYME']")));
-        login.Enter();
+//        Login login = new Login();
+//        login.toLogin();
+//        login.clickEnter();
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type=email]")));
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[gtm='כניסה ל-BUYME']")));
+//        login.Enter();
     }
     @Test
     public void searchGift(){
