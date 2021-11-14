@@ -4,18 +4,24 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class DriverSingleton {
-    private static SingletonBrowser getDriverInstance = null;
+    private static DriverSingleton instanceOfDriver = null;
     private static WebDriver driver;
 
-    public static DriverSingleton getDriverInstance(){
-        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+    //Constructor
+    private DriverSingleton(){
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Yelena\\Downloads\\chromedriver_win32\\chromedriver.exe");
         driver = new ChromeDriver();
-        return getDriverInstance;
+    }
+
+    public static DriverSingleton getDriverInstance(){
+        if(instanceOfDriver == null){
+            instanceOfDriver = new DriverSingleton();
+        }
+        return instanceOfDriver;
     }
 
     //get driver
     public WebDriver getDriver(){
         return driver;
-    }
     }
 }

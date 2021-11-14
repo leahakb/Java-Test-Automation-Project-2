@@ -2,23 +2,25 @@ package Login_or_Register;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Register {
     private boolean alreadyRegistered = true;
     private WebDriver driver;
-    private WebDriverWait wait;
 
     public void toRegister() {
         this.driver = DriverSingleton.getDriverInstance().getDriver();
+        //popup to login or register
+        WebElement enter_link = driver.findElement(By.className("seperator-link"));
+        Actions enter_action = new Actions(driver);
+        enter_action.moveToElement(enter_link).click().perform();
     }
 
     public void Registration() {
         if (!alreadyRegistered) {
-            driver.findElement(By.className("seperator-link")).click();
-            //wait for the "to register" link element to be availabe. Popup needs time to get loaded
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.register-or-login > span")));
 
             driver.findElement(By.cssSelector("div.register-or-login > span")).click();
 

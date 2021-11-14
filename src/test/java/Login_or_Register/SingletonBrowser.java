@@ -6,7 +6,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class SingletonBrowser {
     //instance of singletone class
     private static SingletonBrowser instaceOfSingletonBrowser = null;
-
     private WebDriver driver;
 
     //Constructor

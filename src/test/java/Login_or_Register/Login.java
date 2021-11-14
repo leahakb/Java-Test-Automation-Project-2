@@ -10,8 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Login{
     private boolean notLoggedIn = true;
     private WebDriver driver;
-    private WebDriverWait wait;
-    public toLogin(WebDriver driver) {
+
+    public void toLogin() {
         this.driver = DriverSingleton.getDriverInstance().getDriver();
     }
 
@@ -21,16 +21,16 @@ public class Login{
             System.out.println("You are already logged in");
         else{
             //popup to login or register
-            driver.findElement(By.className("seperator-link")).click();
+            WebElement enter_link = driver.findElement(By.className("seperator-link"));
+            Actions enter_action = new Actions(driver);
+            enter_action.moveToElement(enter_link).click().perform();
 
         }
 
     }
     public void Enter(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[gtm='כניסה ל-BUYME']")));
         WebElement login = driver.findElement(By.cssSelector("button[type=submit]"));
         Actions login_aciton = new Actions(driver);
-       wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type=email]")));
         driver.findElement(By.cssSelector("input[type=email]")).sendKeys(Constants.email);
         driver.findElement(By.cssSelector("input[type=password]")).sendKeys(Constants.pass);
 

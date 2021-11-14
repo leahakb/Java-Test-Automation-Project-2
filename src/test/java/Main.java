@@ -1,8 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.tracing.SpanWrappedRoutable;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -21,7 +19,7 @@ public class Main {
     public static void openSite(){
         OpenSite assignDriver = new OpenSite(driver);
         assignDriver.OpenWebsite();
-        //wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(DriverSingleton.getDriverInstance().getDriver(), 10);
     }
     @Test
     private void toRegister() {
@@ -29,6 +27,8 @@ public class Main {
 
         Register process = new Register();
         process.toRegister();
+        //wait for the "to register" link element to be availabe. Popup needs time to get loaded
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.register-or-login > span")));
         process.Registration();
     }
 
@@ -37,6 +37,8 @@ public class Main {
         Login login = new Login();
         login.toLogin();
         login.clickEnter();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type=email]")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[gtm='כניסה ל-BUYME']")));
         login.Enter();
     }
     @Test

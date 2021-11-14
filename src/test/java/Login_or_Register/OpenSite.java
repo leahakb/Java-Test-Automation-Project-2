@@ -10,7 +10,7 @@ public class OpenSite {
         this.driver = driver;
     }
     public void OpenWebsite(){
-        this.driver = DriverSingleton.getDriverInstance();
+        this.driver = DriverSingleton.getDriverInstance().getDriver();
         driver.get("https://buyme.co.il/");
     }
 
