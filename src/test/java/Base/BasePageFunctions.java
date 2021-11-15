@@ -15,10 +15,34 @@ public class BasePageFunctions {
     public void popup(){
         this.driver = DriverSingleton.getDriverInstance();
         //popup to login or register
-        WebElement enter_link = driver.findElement(By.className("seperator-link"));
+        WebElement enter_link = getWebElement(By.className("seperator-link"));
         Actions enter_action = new Actions(driver);
         enter_action.moveToElement(enter_link).click().perform();
     }
 
+    public WebElement findElement(By locator){
+        return getWebElement(locator);
+    }
+    public void isDisplayed(By locator){
+        getWebElement(locator).isDisplayed();
+    }
+
+    public void clickElement(By locator){
+        getWebElement(locator).click();
+    }
+
+    public void sendKeysToElement(By locator, String text){
+        getWebElement(locator).sendKeys(text);
+    }
+    private WebElement getWebElement(By locator){
+        return  driver.findElement(locator);
+    }
+
+//    public void getSize(By locator){
+//        getWebElements(locator);
+//    }
+//    private WebElement getWebElements(By locator){
+//        return  driver.findElements(locator);
+//    }
 
 }

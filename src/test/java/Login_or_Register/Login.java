@@ -7,33 +7,41 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Login{
-    private boolean notLoggedIn = true;
-    private WebDriver driver;
+public class Login extends BasePageFunctions{
+    private WebDriverWait wait;
 
     public Login(WebDriver driver) {
-        this.driver = DriverSingleton.getDriverInstance();
+        super(driver);
+        wait = new WebDriverWait(driver, 10);
     }
 
-    public void Popup(){
-        notLoggedIn = driver.findElement(By.className("seperator-link")).isDisplayed();
-        if(!notLoggedIn)
-            System.out.println("You are already logged in");
-        else{
-            //popup to login or register
-            BasePageFunctions enter = new BasePageFunctions(driver);
+    public void processLogin(){
+        openPopup();
+        enterCredentials();
+    }
+
+    private void openPopup(){
+
+            //open popup to login or register
+        try {
+            BasePageFunctions enter = new BasePageFunctions(DriverSingleton.getDriverInstance());
             enter.popup();
+        } catch (Exception e) {
+            System.out.println("You are either logged in or something went wrong! Log out and try agian.");
         }
 
     }
-    public void Enter(){
-        WebElement login = driver.findElement(By.cssSelector("button[type=submit]"));
-        Actions login_aciton = new Actions(driver);
-        driver.findElement(By.cssSelector("input[type=email]")).sendKeys(Constants.email);
-        driver.findElement(By.cssSelector("input[type=password]")).sendKeys(Constants.pass);
+    private void enterCredentials(){
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[gtm='כניסה ל-BUYME']")));
+        WebElement login = findElement(By.cssSelector("button[type=submit]"));
+        Actions login_aciton = new Actions(DriverSingleton.getDriverInstance());
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type=email]")));
+        sendKeysToElement(By.cssSelector("input[type=email]"), Constants.email);
+        sendKeysToElement(By.cssSelector("input[type=password]"), Constants.pass);
 
         login_aciton.moveToElement(login).click().perform();
-
     }
 }

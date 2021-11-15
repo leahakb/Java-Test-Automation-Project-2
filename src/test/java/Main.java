@@ -11,7 +11,7 @@ import Login_or_Register.*;
 import Base.*;
 
 public class Main {
-    private static WebDriverWait wait;
+   // private static WebDriverWait wait;
     private static WebDriver driver;
 
     @BeforeClass
@@ -19,7 +19,7 @@ public class Main {
         OpenSite assignDriver = new OpenSite(driver);
         assignDriver.OpenWebsite();
         driver =  DriverSingleton.getDriverInstance();
-        wait = new WebDriverWait(DriverSingleton.getDriverInstance(), 10);
+        //wait = new WebDriverWait(DriverSingleton.getDriverInstance(), 10);
     }
     @Test
     private void toRegister() {
@@ -34,13 +34,7 @@ public class Main {
     @Test
     public void toLogin(){
         Login login = new Login(driver);
-        login.Popup();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type=email]")));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[gtm='כניסה ל-BUYME']")));
-        login.Enter();
-        if (driver.findElements(By.className("login-error")).size() !=0) {
-            toRegister();
-        }
+        login.processLogin();
     }
     @Test
     public void searchGift(){
