@@ -38,11 +38,4 @@ public class BasePageFunctions {
         return  driver.findElement(locator);
     }
 
-//    public void getSize(By locator){
-//        getWebElements(locator);
-//    }
-//    private WebElement getWebElements(By locator){
-//        return  driver.findElements(locator);
-//    }
-
 }

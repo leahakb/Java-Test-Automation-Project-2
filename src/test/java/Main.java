@@ -24,11 +24,10 @@ public class Main {
     @Test
     private void toRegister() {
         //click toRegister link in case the login has an error message
-        Register process = new Register(driver);
+        Register register = new Register(driver);
         //open a popup if the lightbox is not opened
         if(driver.findElements(By.className("lightbox-title")).size() == 0)
-            process.Popup();
-        process.Registration();
+            register.processRegistration();
     }
 
     @Test

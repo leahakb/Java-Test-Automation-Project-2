@@ -13,13 +13,17 @@ public class Register extends BasePageFunctions {
         super(driver);
         wait = new WebDriverWait(DriverSingleton.getDriverInstance(), 10);
     }
-    public void Popup() {
+    public void processRegistration(){
+        openPopup();
+        Registration();
+    }
+    private void openPopup() {
         //popup to login or register
         BasePageFunctions enter = new BasePageFunctions(DriverSingleton.getDriverInstance());
         enter.popup();
     }
 
-    public void Registration() {
+    private void Registration() {
         //if (!alreadyRegistered) {
         //wait for the "toRegister" link element to be available. Popup needs time to get loaded
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.register-or-login > span")));
@@ -32,8 +36,7 @@ public class Register extends BasePageFunctions {
         clickElement(By.cssSelector("button[type=submit]"));
 
 //        if (driver.findElements(By.className("login-error")).size() != 0) {
-//            driver.findElement(By.className("lightbox-close")).click();
+//            clickElement(By.className("lightbox-close"));
 //        }
     }
-   // }
 }

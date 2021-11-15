@@ -35,7 +35,7 @@ public class Login extends BasePageFunctions{
 
     }
     private void enterCredentials(){
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[gtm='כניסה ל-BUYME']")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[gtm='כניסה ל-BUYME']")));
         WebElement login = findElement(By.cssSelector("button[type=submit]"));
         Actions login_aciton = new Actions(DriverSingleton.getDriverInstance());
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type=email]")));

@@ -11,6 +11,7 @@ public class DriverSingleton {
         if(driver == null){
             System.setProperty("webdriver.chrome.driver", "C:\\Users\\Yelena\\Downloads\\chromedriver_win32\\chromedriver.exe");
             driver = new ChromeDriver();
+            driver.manage().window().maximize();
         }
         return driver;
     }
