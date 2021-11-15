@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class Register {
-    private boolean alreadyRegistered = true;
     private WebDriver driver;
 
     public Register(WebDriver driver){
@@ -28,8 +27,7 @@ public class Register {
             driver.findElement(By.cssSelector("input[placeholder='אימות סיסמה']")).sendKeys(Constants.pass);
             driver.findElement(By.cssSelector("button[type=submit]")).click();
 
-            alreadyRegistered = driver.findElement(By.className("login-error")).isDisplayed();
-            if (alreadyRegistered) {
+            if (driver.findElements(By.className("login-error")).size() != 0) {
                 driver.findElement(By.className("lightbox-close")).click();
 
             }

@@ -24,13 +24,12 @@ public class Main {
     @Test
     private void toRegister() {
         //click toRegister link in case the login has an error message
-
-        if (driver.findElements(By.className("login-error")).size() !=0) {
-            Register process = new Register(driver);
-            //wait for the "toRegister" link element to be available. Popup needs time to get loaded
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.register-or-login > span")));
-            process.Registration();
-        }
+        Register process = new Register(driver);
+        //wait for the "toRegister" link element to be available. Popup needs time to get loaded
+        if(driver.findElements(By.className("lightbox-title")).size() == 0)
+            process.Popup();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.register-or-login > span")));
+        process.Registration();
     }
 
     @Test
@@ -40,6 +39,9 @@ public class Main {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type=email]")));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[gtm='כניסה ל-BUYME']")));
         login.Enter();
+        if (driver.findElements(By.className("login-error")).size() !=0) {
+            toRegister();
+        }
     }
     @Test
     public void searchGift(){

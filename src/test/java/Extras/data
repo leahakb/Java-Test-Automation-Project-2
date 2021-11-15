@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<class>
+    <login_credentials>
+        <firstname>test123</firstname>
+        <email>leah1@gmail.com</email>
+        <pass>test@532</pass>
+
+    </login_credentials>
+
+    <browser>
+        <browserC>ChromeDriver</browserC>
+        <browserF>FirefoxDriver</browserF>
+    </browser>
+
+</class>
