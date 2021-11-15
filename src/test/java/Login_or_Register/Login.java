@@ -21,10 +21,8 @@ public class Login{
             System.out.println("You are already logged in");
         else{
             //popup to login or register
-            WebElement enter_link = driver.findElement(By.className("seperator-link"));
-            Actions enter_action = new Actions(driver);
-            enter_action.moveToElement(enter_link).click().perform();
-
+            BasicPageFunctions enter = new BasicPageFunctions(driver);
+            enter.popup();
         }
 
     }

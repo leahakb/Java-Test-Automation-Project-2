@@ -26,7 +26,6 @@ public class Main {
         //click toRegister link in case the login has an error message
         if (driver.findElement(By.className("login-error")).isDisplayed()) {
             Register process = new Register(driver);
-            process.Popup();
             //wait for the "to register" link element to be available. Popup needs time to get loaded
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.register-or-login > span")));
             process.Registration();

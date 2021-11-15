@@ -15,11 +15,9 @@ public class Register {
         this.driver = DriverSingleton.getDriverInstance();
     }
     public void Popup() {
-        //this.driver = DriverSingleton.getDriverInstance().;
         //popup to login or register
-        WebElement enter_link = driver.findElement(By.className("seperator-link"));
-        Actions enter_action = new Actions(driver);
-        enter_action.moveToElement(enter_link).click().perform();
+        BasicPageFunctions enter = new BasicPageFunctions(driver);
+        enter.popup();
     }
 
     public void Registration() {
