@@ -5,10 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-public class BasicPageFunctions {
+public class BasePageFunctions {
     private WebDriver driver;
 
-    public BasicPageFunctions(WebDriver driver){
+    public BasePageFunctions(WebDriver driver){
         this.driver = DriverSingleton.getDriverInstance();
     }
 

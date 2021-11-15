@@ -2,10 +2,6 @@ package Login_or_Register;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Register {
     private boolean alreadyRegistered = true;
@@ -16,7 +12,7 @@ public class Register {
     }
     public void Popup() {
         //popup to login or register
-        BasicPageFunctions enter = new BasicPageFunctions(driver);
+        BasePageFunctions enter = new BasePageFunctions(driver);
         enter.popup();
     }
 
