@@ -1,6 +1,5 @@
-package Login_or_Register;
+package Base;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class OpenSite {

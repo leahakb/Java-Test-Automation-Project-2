@@ -1,4 +1,4 @@
-package Login_or_Register;
+package Base;
 
 public class Constants {
     //registration credentials

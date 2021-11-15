@@ -1,4 +1,4 @@
-package Login_or_Register;
+package Base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
