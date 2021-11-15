@@ -25,10 +25,9 @@ public class Main {
     private void toRegister() {
         //click toRegister link in case the login has an error message
         Register process = new Register(driver);
-        //wait for the "toRegister" link element to be available. Popup needs time to get loaded
+        //open a popup if the lightbox is not opened
         if(driver.findElements(By.className("lightbox-title")).size() == 0)
             process.Popup();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.register-or-login > span")));
         process.Registration();
     }
 
