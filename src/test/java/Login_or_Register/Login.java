@@ -11,11 +11,11 @@ public class Login{
     private boolean notLoggedIn = true;
     private WebDriver driver;
 
-    public void toLogin() {
-        this.driver = DriverSingleton.getDriverInstance().getDriver();
+    public Login(WebDriver driver) {
+        this.driver = DriverSingleton.getDriverInstance();
     }
 
-    public void clickEnter(){
+    public void Popup(){
         notLoggedIn = driver.findElement(By.className("seperator-link")).isDisplayed();
         if(!notLoggedIn)
             System.out.println("You are already logged in");

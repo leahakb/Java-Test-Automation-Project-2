@@ -19,27 +19,27 @@ public class Main {
     public static void openSite(){
         OpenSite assignDriver = new OpenSite(driver);
         assignDriver.OpenWebsite();
-        wait = new WebDriverWait(DriverSingleton.getDriverInstance().getDriver(), 10);
+        wait = new WebDriverWait(DriverSingleton.getDriverInstance(), 10);
     }
     @Test
     private void toRegister() {
-        //popup to login or register
-
-        Register process = new Register();
-        process.toRegister();
-        //wait for the "to register" link element to be availabe. Popup needs time to get loaded
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.register-or-login > span")));
-        process.Registration();
+        //click toRegister link in case the login has an error message
+        if (driver.findElement(By.className("login-error")).isDisplayed()) {
+            Register process = new Register(driver);
+            process.Popup();
+            //wait for the "to register" link element to be available. Popup needs time to get loaded
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.register-or-login > span")));
+            process.Registration();
+        }
     }
 
     @Test
     public void toLogin(){
-//        Login login = new Login();
-//        login.toLogin();
-//        login.clickEnter();
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type=email]")));
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[gtm='כניסה ל-BUYME']")));
-//        login.Enter();
+        Login login = new Login(driver);
+        login.Popup();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type=email]")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[gtm='כניסה ל-BUYME']")));
+        login.Enter();
     }
     @Test
     public void searchGift(){
