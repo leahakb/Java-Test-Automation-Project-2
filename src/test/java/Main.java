@@ -1,3 +1,4 @@
+import com.google.inject.spi.Dependency;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
@@ -23,25 +24,26 @@ public class Main {
         //click toRegister link in case the login has an error message
         Register register = new Register(driver);
         //open a popup if the lightbox is not opened
-        if(driver.findElements(By.className("lightbox-title")).size() == 0)
-            register.processRegistration();
+//        if(driver.findElements(By.className("lightbox-title")).size() == 0)
+//            register.processRegistration();
     }
 
-    @Test
+    @Test(priority = 1)
     public void toLogin(){
         Login login = new Login(driver);
         login.processLogin();
     }
-    @Test
+    @Test(dependsOnMethods = {"toLogin"})
     public void searchGift(){
         Search search = new Search(driver);
         search.processSearch();
     }
-    @Test
+    @Test(dependsOnMethods = {"searchGift"})
     public void pickBusiness(){
-
+        Business pickBusness = new Business(driver);
+        pickBusness.processPickBusiness();
     }
-    @Test
+    @Test(dependsOnMethods = {"pickBusiness"})
     public void sendRecieveInfo(){
 
     }
