@@ -1,4 +1,4 @@
-package Login_or_Register;
+package Pages;
 
 import Base.*;
 import org.openqa.selenium.By;

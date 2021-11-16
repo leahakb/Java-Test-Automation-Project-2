@@ -1,13 +1,10 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import Login_or_Register.*;
+import Pages.*;
 import Base.*;
 
 public class Main {
@@ -37,7 +34,8 @@ public class Main {
     }
     @Test
     public void searchGift(){
-
+        Search search = new Search(driver);
+        search.processSearch();
     }
     @Test
     public void pickBusiness(){
