@@ -45,7 +45,8 @@ public class Main {
     }
     @Test(dependsOnMethods = {"pickBusiness"})
     public void sendRecieveInfo(){
-
+        SenderReceiver sr = new SenderReceiver(driver);
+        sr.processSenderReceiver();
     }
     @AfterClass
     public void runAfterClass(){

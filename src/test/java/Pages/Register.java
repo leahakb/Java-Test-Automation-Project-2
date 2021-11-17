@@ -8,10 +8,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Register extends BasePageFunctions {
     private static WebDriverWait wait;
+    private static WebDriver driver = DriverSingleton.getDriverInstance();
 
     public Register(WebDriver driver){
         super(driver);
-        wait = new WebDriverWait(DriverSingleton.getDriverInstance(), 10);
+        wait = new WebDriverWait(driver, 10);
     }
     public void processRegistration(){
         openPopup();

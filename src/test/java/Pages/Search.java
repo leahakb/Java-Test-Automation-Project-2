@@ -10,13 +10,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
-public class Search extends BasePageFunctions{
+public class Search extends BasePageFunctions {
     private static WebDriverWait wait;
     private static WebDriver driver =DriverSingleton.getDriverInstance();
 
     public Search(WebDriver driver){
         super(driver);
-        wait = new WebDriverWait(DriverSingleton.getDriverInstance(), 10);
+        wait = new WebDriverWait(driver, 10);
     }
     public void processSearch(){
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("div.ui-lightbox")));

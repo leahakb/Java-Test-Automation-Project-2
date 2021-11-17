@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Login extends BasePageFunctions{
     private WebDriverWait wait;
+    private static WebDriver driver = DriverSingleton.getDriverInstance();
 
     public Login(WebDriver driver) {
         super(driver);
@@ -27,7 +28,7 @@ public class Login extends BasePageFunctions{
 
             //open popup to login or register
         try {
-            BasePageFunctions enter = new BasePageFunctions(DriverSingleton.getDriverInstance());
+            BasePageFunctions enter = new BasePageFunctions(driver);
             enter.popup();
         } catch (Exception e) {
             System.out.println("You are either logged in or something went wrong! Log out and try agian.");
@@ -37,7 +38,7 @@ public class Login extends BasePageFunctions{
     private void enterCredentials(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[gtm='כניסה ל-BUYME']")));
         WebElement login = findElement(By.cssSelector("button[type=submit]"));
-        Actions login_aciton = new Actions(DriverSingleton.getDriverInstance());
+        Actions login_aciton = new Actions(driver);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type=email]")));
         sendKeysToElement(By.cssSelector("input[type=email]"), Constants.email);
         sendKeysToElement(By.cssSelector("input[type=password]"), Constants.pass);

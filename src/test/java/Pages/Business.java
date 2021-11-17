@@ -11,11 +11,11 @@ import java.sql.Driver;
 
 public class Business extends BasePageFunctions {
     private static WebDriverWait wait;
-    private static WebDriver driver;
+    private static WebDriver driver = DriverSingleton.getDriverInstance();
 
     public Business(WebDriver driver){
         super(driver);
-        wait = new WebDriverWait(DriverSingleton.getDriverInstance(), 10);
+        wait = new WebDriverWait(driver, 10);
     }
     public void processPickBusiness(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("ul.grid")));
