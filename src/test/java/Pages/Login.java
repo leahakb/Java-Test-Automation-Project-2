@@ -10,16 +10,17 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Login extends BasePageFunctions{
+public class Login extends BasePageFunctions {
     private WebDriverWait wait;
-    private static WebDriver driver = DriverSingleton.getDriverInstance();
+    private static WebDriver driver;
 
-    public Login(WebDriver driver) {
+    public Login(WebDriver driver) throws Exception{
         super(driver);
         wait = new WebDriverWait(driver, 10);
     }
 
-    public void processLogin(){
+    public void processLogin() throws Exception{
+        driver = DriverSingleton.getDriverInstance();
         openPopup();
         enterCredentials();
     }

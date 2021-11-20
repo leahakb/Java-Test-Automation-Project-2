@@ -12,13 +12,14 @@ import java.util.concurrent.TimeUnit;
 
 public class Search extends BasePageFunctions {
     private static WebDriverWait wait;
-    private static WebDriver driver =DriverSingleton.getDriverInstance();
+    private static WebDriver driver;
 
-    public Search(WebDriver driver){
+    public Search(WebDriver driver) throws Exception{
         super(driver);
         wait = new WebDriverWait(driver, 10);
     }
-    public void processSearch(){
+    public void processSearch() throws Exception{
+        driver = DriverSingleton.getDriverInstance();
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("div.ui-lightbox")));
         //checkIfLoggedin();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='סכום']")));
@@ -29,7 +30,7 @@ public class Search extends BasePageFunctions {
         selectCategory();
         SubmitSearch();
     }
-    private void checkIfLoggedin(){
+    private void checkIfLoggedin() throws Exception{
         int loggedin = driver.findElements(By.cssSelector("span[contains(text(), 'החשבון שלי')]")).size();
         System.out.println(loggedin);
         //in case the user is not logged in process Login

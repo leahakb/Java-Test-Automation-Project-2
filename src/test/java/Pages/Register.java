@@ -8,17 +8,18 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Register extends BasePageFunctions {
     private static WebDriverWait wait;
-    private static WebDriver driver = DriverSingleton.getDriverInstance();
+    private static WebDriver driver;
 
-    public Register(WebDriver driver){
+    public Register(WebDriver driver) throws Exception{
         super(driver);
         wait = new WebDriverWait(driver, 10);
     }
-    public void processRegistration(){
+    public void processRegistration() throws Exception{
+        driver = DriverSingleton.getDriverInstance();
         openPopup();
         Registration();
     }
-    private void openPopup() {
+    private void openPopup() throws Exception{
         //popup to login or register
         BasePageFunctions enter = new BasePageFunctions(DriverSingleton.getDriverInstance());
         enter.popup();

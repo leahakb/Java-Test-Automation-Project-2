@@ -11,9 +11,8 @@ import java.sql.Driver;
 
 public class Business extends BasePageFunctions {
     private static WebDriverWait wait;
-    private static WebDriver driver = DriverSingleton.getDriverInstance();
-
-    public Business(WebDriver driver){
+//    private static WebDriver driver = DriverSingleton.getDriverInstance();
+    public Business(WebDriver driver) throws Exception{
         super(driver);
         wait = new WebDriverWait(driver, 10);
     }

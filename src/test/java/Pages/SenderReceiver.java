@@ -8,15 +8,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
 public class SenderReceiver extends BasePageFunctions {
     private static WebDriverWait wait;
-    private static WebDriver driver = DriverSingleton.getDriverInstance();
+    private static WebDriver driver;
 
-    public SenderReceiver(WebDriver driver) {
+    public SenderReceiver(WebDriver driver) throws Exception{
         super(driver);
         wait = new WebDriverWait(driver, 10);
     }
-    public void processSenderReceiver(){
+    public void processSenderReceiver() throws Exception{
+        driver = DriverSingleton.getDriverInstance();
         enterName();
         selectEvent();
         writeBlessing();
@@ -30,37 +32,47 @@ public class SenderReceiver extends BasePageFunctions {
         assertSenderReceiver();
     }
     private void enterName(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("label#friendName>input")));
         sendKeysToElement(By.cssSelector("label#friendName>input"), Constants.friendName);
     }
     private void selectEvent(){
-        clickElement(By.xpath("//span[title='לאיזה אירוע?']"));
-        String eventOptionLocator="//li[contains(text(),'יום הולדת')]";
+        clickElement(By.cssSelector("span[title='לאיזה אירוע?']"));
+        String eventOptionLocator="//span[contains(text(),'יום הולדת')]";
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(eventOptionLocator)));
         clickElement(By.xpath(eventOptionLocator));
     }
     private void writeBlessing(){
-        sendKeysToElement(By.xpath("//span[//span[contains(text(), 'ברכה']]::textarea"),Constants.blessings);
+        //clear placeholder text
+        findElement(By.cssSelector("textarea")).clear();
+        //enter new text
+        sendKeysToElement(By.cssSelector("textarea"),Constants.blessings);
     }
     private void uploadPicture(){
-
+        //clickElement(By.cssSelector("label.bm-media-upload"));
+        findElement(By.cssSelector("label.bm-media-upload>input")).sendKeys("C:\\Users\\Yelena\\Downloads\\test.png");
     }
     private void pressContinue(){
-
+        clickElement(By.cssSelector("button[gtm='המשך']"));
     }
     private void pressNow(){
-
+        //Wait added for the JS (1->2 progress) function that needs to be completed for the page to be ready
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.progress.complete")));
     }
     private void pickEmailOrSMS(){
-
+        clickElement(By.cssSelector("svg[gtm='method-sms']"));
     }
     private void enterEmailOrSMS(){
-
+        sendKeysToElement(By.cssSelector("input#sms"),Constants.phone);
     }
     private void enterSenderName(){
 
+        findElement(By.cssSelector("input[placeholder='שם שולח המתנה')]")).clear();
+        sendKeysToElement(By.cssSelector("input[placeholder='שם שולח המתנה')]"),Constants.senderName);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[placeholder='מספר נייד')]")));
+        sendKeysToElement(By.cssSelector("input[placeholder='מספר נייד')]"),Constants.senderPhone);
     }
     private void pressContinue2(){
-
+        clickElement(By.cssSelector("button[gtm='המשך לתשלום']"));
     }
     private void assertSenderReceiver(){
 
