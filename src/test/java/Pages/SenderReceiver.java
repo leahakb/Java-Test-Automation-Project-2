@@ -4,6 +4,7 @@ import Base.BasePageFunctions;
 import Base.Constants;
 import Base.DriverSingleton;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -56,20 +57,30 @@ public class SenderReceiver extends BasePageFunctions {
     }
     private void pressNow(){
         //Wait added for the JS (1->2 progress) function that needs to be completed for the page to be ready
+        try
+        {
+            Thread.sleep(1000); // Sleep the current thread for 1 second
+        } catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.progress.complete")));
     }
     private void pickEmailOrSMS(){
         clickElement(By.cssSelector("svg[gtm='method-sms']"));
     }
     private void enterEmailOrSMS(){
+        findElement(By.cssSelector("input#sms")).clear();
         sendKeysToElement(By.cssSelector("input#sms"),Constants.phone);
     }
     private void enterSenderName(){
-
-        findElement(By.cssSelector("input[placeholder='שם שולח המתנה')]")).clear();
-        sendKeysToElement(By.cssSelector("input[placeholder='שם שולח המתנה')]"),Constants.senderName);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[placeholder='מספר נייד')]")));
-        sendKeysToElement(By.cssSelector("input[placeholder='מספר נייד')]"),Constants.senderPhone);
+        //scroll down to the filed visibility
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,1000)");
+        findElement(By.cssSelector("input[placeholder='שם שולח המתנה']")).clear();
+        sendKeysToElement(By.cssSelector("input[placeholder='שם שולח המתנה']"),Constants.senderName);
+        findElement(By.cssSelector("input[placeholder='מספר נייד']")).clear();
+        sendKeysToElement(By.cssSelector("input[placeholder='מספר נייד']"),Constants.senderPhone);
     }
     private void pressContinue2(){
         clickElement(By.cssSelector("button[gtm='המשך לתשלום']"));

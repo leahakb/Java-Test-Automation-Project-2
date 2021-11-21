@@ -37,7 +37,7 @@ public class DriverSingleton {
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         Document doc = dBuilder.parse(fXmlFile);
         doc.getDocumentElement().normalize();
-        System.out.println(doc.getElementsByTagName(keyName).item(0).getTextContent());
+
         return doc.getElementsByTagName(keyName).item(0).getTextContent();
     }
 
