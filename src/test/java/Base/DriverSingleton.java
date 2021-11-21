@@ -15,7 +15,7 @@ public class DriverSingleton {
 
     public static WebDriver getDriverInstance() throws Exception{
         if(driver == null){
-            String driverType = getData("browserType");
+            String driverType = ReadXML.getData("browserType");
             switch (driverType){
                 case "Chrome":
                 System.setProperty("webdriver.chrome.driver", "C:\\Users\\Yelena\\Downloads\\chromedriver_win32\\chromedriver.exe");
@@ -29,16 +29,16 @@ public class DriverSingleton {
         }
         return driver;
     }
-    private static String getData (String keyName) throws Exception{
-        ClassLoader classLoader = DriverSingleton.class.getClassLoader();
-        String file_path = "C:\\Users\\Yelena\\IdeaProjects\\Automation Java Project 2 - Buyme site\\src\\main\\resources\\data.xml";
-        File fXmlFile = new File(file_path);
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        Document doc = dBuilder.parse(fXmlFile);
-        doc.getDocumentElement().normalize();
-
-        return doc.getElementsByTagName(keyName).item(0).getTextContent();
-    }
+//    private static String getData (String keyName) throws Exception{
+//        ClassLoader classLoader = DriverSingleton.class.getClassLoader();
+//        String file_path = "C:\\Users\\Yelena\\IdeaProjects\\Automation Java Project 2 - Buyme site\\src\\main\\resources\\data.xml";
+//        File fXmlFile = new File(file_path);
+//        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+//        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+//        Document doc = dBuilder.parse(fXmlFile);
+//        doc.getDocumentElement().normalize();
+//
+//        return doc.getElementsByTagName(keyName).item(0).getTextContent();
+//    }
 
 }
