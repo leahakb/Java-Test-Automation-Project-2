@@ -3,6 +3,7 @@ package Pages;
 import Base.BasePageFunctions;
 import Base.Constants;
 import Base.DriverSingleton;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -33,8 +34,14 @@ public class SenderReceiver extends BasePageFunctions {
         assertSenderReceiver();
     }
     private void enterName(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("label#friendName>input")));
-        sendKeysToElement(By.cssSelector("label#friendName>input"), Constants.friendName);
+        String find_receiver = "label#friendName>input";
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(find_receiver)));
+        //to clear the autofill if any exists in browser
+        findElement(By.cssSelector(find_receiver)).clear();
+        sendKeysToElement(By.cssSelector(find_receiver), Constants.friendName);
+        //Asserting Sender Name field
+        String actual_entered_reciever = findElement(By.cssSelector(find_receiver)).getAttribute("value");
+        Assert.assertEquals(Constants.friendName, actual_entered_reciever);
     }
     private void selectEvent(){
         String eventOptionLocator="//span[contains(text(),'יום הולדת')]";
@@ -78,6 +85,10 @@ public class SenderReceiver extends BasePageFunctions {
         js.executeScript("window.scrollBy(0,1000)");
         findElement(By.cssSelector("input[placeholder='שם שולח המתנה']")).clear();
         sendKeysToElement(By.cssSelector("input[placeholder='שם שולח המתנה']"),Constants.senderName);
+        //Asserting Sender Name field
+        String actual_entered_sender= findElement(By.cssSelector("input[placeholder='שם שולח המתנה']")).getAttribute("value");
+        Assert.assertEquals(Constants.senderName, actual_entered_sender);
+
         findElement(By.cssSelector("input[placeholder='מספר נייד']")).clear();
         sendKeysToElement(By.cssSelector("input[placeholder='מספר נייד']"),Constants.senderPhone);
     }

@@ -44,18 +44,18 @@ public class Login extends BasePageFunctions {
         WebElement login = findElement(By.cssSelector("button[type=submit]"));
         Actions login_aciton = new Actions(driver);
 
-        String login_email = "input[type=email]";
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(login_email)));
-        sendKeysToElement(By.cssSelector(login_email), Constants.email);
+        String find_email = "input[type=email]";
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(find_email)));
+        sendKeysToElement(By.cssSelector(find_email), Constants.email);
         //Asserting Email field
-        String actual_email = findElement(By.cssSelector(login_email)).getAttribute("value");
-        Assert.assertEquals(Constants.email, actual_email);
+        String actual_entered_email = findElement(By.cssSelector(find_email)).getAttribute("value");
+        Assert.assertEquals(Constants.email, actual_entered_email);
 
-        String login_pass="input[type=password]";
-        sendKeysToElement(By.cssSelector(login_pass), Constants.pass);
+        String find_pass="input[type=password]";
+        sendKeysToElement(By.cssSelector(find_pass), Constants.pass);
         //Asserting Password field
-        String actual_pass = findElement(By.cssSelector(login_pass)).getAttribute("value");
-        Assert.assertEquals(Constants.pass, actual_pass);
+        String actual_entered_pass = findElement(By.cssSelector(find_pass)).getAttribute("value");
+        Assert.assertEquals(Constants.pass, actual_entered_pass);
 
         login_aciton.moveToElement(login).click().perform();
     }
