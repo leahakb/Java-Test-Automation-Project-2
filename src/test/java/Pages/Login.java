@@ -3,12 +3,15 @@ package Pages;
 import Base.BasePageFunctions;
 import Base.Constants;
 import Base.DriverSingleton;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
 
 public class Login extends BasePageFunctions {
     private WebDriverWait wait;
@@ -42,8 +45,13 @@ public class Login extends BasePageFunctions {
         Actions login_aciton = new Actions(driver);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type=email]")));
         sendKeysToElement(By.cssSelector("input[type=email]"), Constants.email);
+        //Asserting Email field
+        String actual_email = findElement(By.cssSelector("input[type=email]")).getAttribute("value");
+        Assert.assertEquals(Constants.email, actual_email);
         sendKeysToElement(By.cssSelector("input[type=password]"), Constants.pass);
-
+        //Asserting Password field
+        String actual_pass = findElement(By.cssSelector("input[type=password]")).getAttribute("value");
+        Assert.assertEquals(Constants.pass, actual_pass);
         login_aciton.moveToElement(login).click().perform();
     }
 }
