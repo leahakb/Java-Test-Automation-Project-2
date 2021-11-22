@@ -37,7 +37,6 @@ public class SenderReceiver extends BasePageFunctions {
         sendKeysToElement(By.cssSelector("label#friendName>input"), Constants.friendName);
     }
     private void selectEvent(){
-        clickElement(By.cssSelector("span[title='לאיזה אירוע?']"));
         String eventOptionLocator="//span[contains(text(),'יום הולדת')]";
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(eventOptionLocator)));
         clickElement(By.xpath(eventOptionLocator));

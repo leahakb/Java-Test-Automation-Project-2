@@ -1,8 +1,7 @@
 package Base;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-
-import java.util.concurrent.TimeUnit;
+import org.testng.Assert;
 
 
 public class OpenSite {
@@ -13,12 +12,13 @@ public class OpenSite {
     }
     public void OpenWebsite() throws Exception{
         String site_url = ReadXML.getData("URL");
+        //assertion for the url
+        Assert.assertEquals(Constants.URL, site_url);
+
         driver.get(site_url);
         //waits for the JavaScrip components to be completed
         JavascriptExecutor j = (JavascriptExecutor)driver;
         j.executeScript("return document.readyState").toString().equals("complete");
     }
-
-
 
 }
