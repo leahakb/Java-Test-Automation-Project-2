@@ -43,15 +43,20 @@ public class Login extends BasePageFunctions {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[gtm='כניסה ל-BUYME']")));
         WebElement login = findElement(By.cssSelector("button[type=submit]"));
         Actions login_aciton = new Actions(driver);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type=email]")));
-        sendKeysToElement(By.cssSelector("input[type=email]"), Constants.email);
+
+        String login_email = "input[type=email]";
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(login_email)));
+        sendKeysToElement(By.cssSelector(login_email), Constants.email);
         //Asserting Email field
-        String actual_email = findElement(By.cssSelector("input[type=email]")).getAttribute("value");
+        String actual_email = findElement(By.cssSelector(login_email)).getAttribute("value");
         Assert.assertEquals(Constants.email, actual_email);
-        sendKeysToElement(By.cssSelector("input[type=password]"), Constants.pass);
+
+        String login_pass="input[type=password]";
+        sendKeysToElement(By.cssSelector(login_pass), Constants.pass);
         //Asserting Password field
-        String actual_pass = findElement(By.cssSelector("input[type=password]")).getAttribute("value");
+        String actual_pass = findElement(By.cssSelector(login_pass)).getAttribute("value");
         Assert.assertEquals(Constants.pass, actual_pass);
+
         login_aciton.moveToElement(login).click().perform();
     }
 }
