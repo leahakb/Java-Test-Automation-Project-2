@@ -31,7 +31,6 @@ public class SenderReceiver extends BasePageFunctions {
         enterEmailOrSMS();
         enterSenderName();
         pressContinue2();
-        assertSenderReceiver();
     }
     private void enterName(){
         String find_receiver = "label#friendName>input";
@@ -94,8 +93,5 @@ public class SenderReceiver extends BasePageFunctions {
     }
     private void pressContinue2(){
         clickElement(By.cssSelector("button[gtm='המשך לתשלום']"));
-    }
-    private void assertSenderReceiver(){
-
     }
 }

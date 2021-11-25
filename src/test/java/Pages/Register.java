@@ -24,7 +24,6 @@ public class Register extends BasePageFunctions {
         BasePageFunctions enter = new BasePageFunctions(DriverSingleton.getDriverInstance());
         enter.popup();
     }
-
     private void Registration() {
         //if (!alreadyRegistered) {
         //wait for the "toRegister" link element to be available. Popup needs time to get loaded

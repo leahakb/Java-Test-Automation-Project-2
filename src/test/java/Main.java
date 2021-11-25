@@ -1,7 +1,3 @@
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.MediaEntityBuilder;
-import com.aventstack.extentreports.Status;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -10,11 +6,8 @@ import org.testng.annotations.Test;
 import Pages.*;
 import Base.*;
 
-
 public class Main {
-   // private static WebDriverWait wait;
     private static WebDriver driver;
-    private static ExtentReports extent;
 
     @BeforeClass
     public static void openSite() throws Exception{
@@ -30,7 +23,6 @@ public class Main {
 //        if(driver.findElements(By.className("lightbox-title")).size() == 0)
 //            register.processRegistration();
     }
-
     @Test(priority = 1)
     public void toLogin() throws Exception{
         Login login = new Login(driver);
@@ -53,8 +45,11 @@ public class Main {
     }
     @AfterClass
     public void runAfterClass(){
-        //driver.quit();
-
+        driver.quit();
+        try {
+            Report.getInstance().flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
 }
