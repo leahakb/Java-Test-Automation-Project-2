@@ -20,7 +20,6 @@ public class BasePageFunctions extends Report{
     public BasePageFunctions(WebDriver driver) throws Exception{
         this.driver = DriverSingleton.getDriverInstance();
         this.report = Report.getInstance();
-
         this.test = Report.getInstance().createTest("ByMe Test", "This file report on the outcome after testing Buyme site");
         // log results
         test.log(Status.INFO, "@Test");
